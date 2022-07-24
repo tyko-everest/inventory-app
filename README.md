@@ -1,6 +1,6 @@
 # inventory-app
 
-FIXME
+A simple app to keep track of my personal electronics inventory.
 
 ## Prerequisites
 
@@ -16,4 +16,4 @@ To start a web server for the application, run:
 
 ## License
 
-Copyright © 2022 FIXME
+Copyright © 2022 Tyko van Vliet
