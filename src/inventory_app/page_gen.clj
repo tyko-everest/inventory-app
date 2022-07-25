@@ -49,8 +49,8 @@
        [:td (form/label "name" "Name")]
        [:td (form/text-field "name")]]
       [:tr
-       [:td (form/label "attribute" "Attribute")]
-       [:td (form/text-field "attribute")]]]
+       [:td (form/label "attributes" "Attributes")]
+       [:td (form/text-field "attributes")]]]
      (form/submit-button "Search")))))
 
 (defn page [title body]
