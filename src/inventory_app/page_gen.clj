@@ -27,6 +27,13 @@
              res))]))
 
 (defn
+  display-item
+  "Generates the display for an item given its map from a database search."
+  [item]
+  (html [:table
+         ]))
+
+(defn
   home
   "Generates the home page."
   []
@@ -34,7 +41,9 @@
    [:h1 "Inventory System"]
    [:a {:href "/attributes"} "Attributes"]
    [:br]
-   [:a {:href "/search"} "Search"]))
+   [:a {:href "/search"} "Search"]
+   [:br]
+   [:a {:href "/all"} "All"]))
 
 (defn
   search

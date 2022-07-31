@@ -18,6 +18,8 @@
       (gen/page "Results" (str (db/search name attributes)))))
   (GET "/search" []
     (gen/page "Search" (gen/search "/results")))
+  (GET "/all" []
+    (gen/page "All" (str (db/get-all))))
   (route/not-found "Not Found"))
 
 (def app
