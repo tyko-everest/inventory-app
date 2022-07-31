@@ -18,6 +18,7 @@
                (conj out
                      {:id (:item/id (first in))
                       :name (:item/name (first in))
+                      :number (:item/number (first in))
                       :attributes [{:name (:attribute/name (first in))
                                     :value (:value/value (first in))
                                     :unit (:attribute/unit (first in))}]})))

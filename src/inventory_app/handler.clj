@@ -4,7 +4,8 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [inventory-app.page-gen :as gen]
-            [inventory-app.db :as db]))
+            [inventory-app.db :as db]
+            [inventory-app.process :as process]))
 
 (defroutes app-routes
   (GET "/" []
@@ -19,7 +20,7 @@
   (GET "/search" []
     (gen/page "Search" (gen/search "/results")))
   (GET "/all" []
-    (gen/page "All" (str (db/get-all))))
+    (gen/page "All" (gen/all (process/convert-item-result (db/get-all)))))
   (route/not-found "Not Found"))
 
 (def app

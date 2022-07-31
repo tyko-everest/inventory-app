@@ -17,21 +17,32 @@
   attribute-table
   "Generates a table of all attributes."
   [attributes]
-  (html [:table [:tr [:th "Attribute"] [:th "Unit"]]
-         (loop [attrs attributes res ""]
-           (if (seq attrs)
-             (recur (rest attrs)
-                    (str res (row-from-map 
-                              (first attrs) 
-                              [:attribute/name :attribute/unit])))
-             res))]))
+  (html
+   [:table [:tr [:th "Attribute"] [:th "Unit"]]
+    (loop [attrs attributes res ""]
+      (if (seq attrs)
+        (recur (rest attrs)
+               (str res (row-from-map
+                         (first attrs)
+                         [:attribute/name :attribute/unit])))
+        res))]))
 
 (defn
   display-item
-  "Generates the display for an item given its map from a database search."
+  "Generates the display for an item given its processed map."
   [item]
-  (html [:table
-         ]))
+  (html
+   [:table
+    [:tr
+     [:td (:name item)]
+     (loop [in (:attributes item) out [:td (:number item)]]
+       (if (seq in)
+         (recur (rest in)
+                (conj out
+                      [:td (:name (first in))]
+                      [:td (:value (first in))]
+                      [:td (:unit (first in))]))
+         out))]]))
 
 (defn
   home
@@ -61,6 +72,16 @@
        [:td (form/label "attributes" "Attributes")]
        [:td (form/text-field "attributes")]]]
      (form/submit-button "Search")))))
+
+(defn all
+  "Generates a page that shows all items in inventory."
+  [items]
+  (html
+   (loop [items items out ""]
+     (if (seq items)
+       (recur (rest items)
+              (str out (display-item (first items))))
+       out))))
 
 (defn page [title body]
   (html5 [:head 
