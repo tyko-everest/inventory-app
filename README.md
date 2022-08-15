@@ -1,5 +1,7 @@
 # inventory-app
 
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+
 A simple app to keep track of my personal electronics inventory.
 
 ## Prerequisites
@@ -17,3 +19,5 @@ To start a web server for the application, run:
 ## License
 
 Copyright © 2022 Tyko van Vliet
+
+Licensed under the Mozilla Public License version 2.0
