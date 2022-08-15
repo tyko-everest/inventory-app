@@ -16,7 +16,9 @@
     (let [attributes (if (blank? attributes)
                        nil
                        (split attributes #",\s*"))]
-      (gen/page "Results" (str (db/search name attributes)))))
+      (gen/page "Results" (gen/results 
+                           (process/convert-item-result 
+                            (db/search name attributes))))))
   (GET "/search" []
     (gen/page "Search" (gen/search "/results")))
   (GET "/all" []

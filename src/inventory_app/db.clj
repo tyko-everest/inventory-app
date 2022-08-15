@@ -16,7 +16,7 @@
 (defn search-query [item attributes]
   (sql/format
    (apply h/where
-          (-> (h/select :item.id :item.name :item.number :attribute.name :value.value :attribute.unit)
+          (-> (h/select :item.id :item.name :item.quantity :attribute.name :value.value :attribute.unit)
               (h/from :value)
               (h/inner-join :item [:= :item.id :value.item_id])
               (h/inner-join :attribute [:= :attribute.id :value.attr_id])
@@ -30,7 +30,7 @@
 
 (defn get-all-query []
   (sql/format
-   (-> (h/select :item.id :item.name :item.number :attribute.name :value.value :attribute.unit)
+   (-> (h/select :item.id :item.name :item.quantity :attribute.name :value.value :attribute.unit)
        (h/from :item)
        (h/left-join :value [:= :item.id :value.item_id])
        (h/left-join :attribute [:= :attribute.id :value.attr_id])

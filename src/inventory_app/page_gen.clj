@@ -35,7 +35,7 @@
    [:table
     [:tr
      [:td (:name item)]
-     (loop [in (:attributes item) out [:td (:number item)]]
+     (loop [in (:attributes item) out [:td (:quantity item)]]
        (if (seq in)
          (recur (rest in)
                 (conj out
@@ -73,15 +73,24 @@
        [:td (form/text-field "attributes")]]]
      (form/submit-button "Search")))))
 
+(defn 
+  results 
+  "Generates a results page from a search."
+  [items]
+  (html (str items)))
+
 (defn all
   "Generates a page that shows all items in inventory."
   [items]
   (html
-   (loop [items items out ""]
-     (if (seq items)
-       (recur (rest items)
-              (str out (display-item (first items))))
-       out))))
+   [:table
+    [:tr [:th "Name"] [:th "Quantity"]]
+    (reduce str (map 
+                 (fn [item] 
+                   (html [:tr
+                    [:td (:name item)]
+                    [:td (:quantity item)]]))
+                 items))]))
 
 (defn page [title body]
   (html5 [:head 
